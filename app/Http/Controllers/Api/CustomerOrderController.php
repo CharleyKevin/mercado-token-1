@@ -9,6 +9,7 @@ use App\Services\Api\CustomerOrderInterface;
 use App\Services\Api\OrderMailInterface;
 use App\Services\Api\SellerInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use SebastianBergmann\Environment\Console;
 
 class CustomerOrderController extends Controller
@@ -105,7 +106,7 @@ class CustomerOrderController extends Controller
             "payment_transaction" => $request['payment_transaction'],
             "token_transaction" => "",
             "verification" => $verification,
-        ]);
+        ],203);
     }
 
     public function validateCustomerOrder(Request $request)
@@ -116,6 +117,7 @@ class CustomerOrderController extends Controller
             if ($verification) {
                 $customerOrder = $this->customerOrderInterface->validateCustomerOrders($request['payment_transaction']);
 
+                $customer = $this->customerInterface->getCustomer($customerOrder['customer_id']);
                 $seller = $this->sellerInterface->getSeller($customerOrder['seller_id']);
 
                 $this->orderMailInterface->sendMailCustomer($customer->toArray(),$customerOrder['token_transaction']);
@@ -134,6 +136,7 @@ class CustomerOrderController extends Controller
                 "verification" => $verification,
             ]);
         }catch (\Throwable $exception){
+            Log::alert($exception);
             return response()->json([
                 "payment_transaction" => "",
                 "token_transaction" => "",
