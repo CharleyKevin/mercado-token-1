@@ -7,8 +7,14 @@ use Illuminate\Support\Collection;
 
 class OrderMailService implements OrderMailInterface
 {
-    public function sendMail(Collection $mails) : Collection
-    {
 
+    public function sendMailCustomer(Collection $mails): bool
+    {
+        // TODO: Implement sendMailCustomer() method.
+    }
+
+    public function sendMailSeller(Collection $mails): bool
+    {
+        // TODO: Implement sendMailSeller() method.
     }
 }

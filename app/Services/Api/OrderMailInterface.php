@@ -10,7 +10,8 @@ interface OrderMailInterface
 {
     /**
      * @param Collection $mails
-     * @return Collection
+     * @return bool
      */
-    public function sendMail(Collection $mails) : Collection;
+    public function sendMailCustomer(Collection $mails) : bool;
+    public function sendMailSeller(Collection $mails) : bool;
 }
