@@ -51,7 +51,7 @@ class CustomerOrderService implements CustomerOrderInterface
 
     public function verifiedCustomerOrders(Request $request): bool
     {
-        $user = User::find($request['user_id']);
+        $user = User::find((isset($request['user_id'])) ? $request['user_id'] : 1);
 
         if ($user->count() < 1) return false;
 
