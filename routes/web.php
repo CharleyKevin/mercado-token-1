@@ -62,8 +62,9 @@ Route::get('/check-image', function () {
             'version'   => 'latest'
         ]);
 
-    $photoPerson = Storage::disk('local')->get('images/foto_fabio.jpeg');
-    $photoPersonId = Storage::disk('local')->get('images/cnh_fabio.png');
+    $photoPerson = file_get_contents(public_path() . '/images/foto_fabio.jpeg');
+    $photoPersonId = file_get_contents(public_path() . '/images/cnh_fabio.png');
+
     $result = $client->compareFaces([
                 'QualityFilter' => 'AUTO', // NONE|AUTO|LOW|MEDIUM|HIGH
                 'SourceImage' => [ // REQUIRED
