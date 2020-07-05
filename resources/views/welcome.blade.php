@@ -12,7 +12,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-color: #f7f7f7;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -49,7 +49,6 @@
             }
 
             .links > a {
-                color: #636b6f;
                 padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;
@@ -65,25 +64,8 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
             <div class="content">
-                <div class="title m-b-md">
-                    Mercado Tokens
-                </div>
-
+                    <img src="/images/logo.jpeg" width="500px" />
             </div>
         </div>
     </body>
