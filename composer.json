@@ -16,7 +16,8 @@
         "laravel/tinker": "^2.0",
         "tymon/jwt-auth": "^1.0",
         "webpatser/laravel-uuid": "^3.0",
-      "ext-http": "*"
+        "ext-http": "*"
+        "aws/aws-sdk-php": "^3.145"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
