@@ -6,6 +6,8 @@ use App\Services\Api\CustomerInterface;
 use App\Services\Api\CustomerOrderInterface;
 use App\Services\Api\CustomerOrderService;
 use App\Services\Api\CustomerService;
+use App\Services\Api\FaceMatchInterface;
+use App\Services\Api\FaceMatchService;
 use App\Services\Api\OrderMailInterface;
 use App\Services\Api\OrderMailService;
 use App\Services\Api\SellerInterface;
@@ -35,5 +37,6 @@ class ServicesProvider extends ServiceProvider
         $this->app->bind(CustomerInterface::class, CustomerService::class);
         $this->app->bind(OrderMailInterface::class, OrderMailService::class);
         $this->app->bind(SellerInterface::class, SellerService::class);
+        $this->app->bind(FaceMatchInterface::class, FaceMatchService::class);
     }
 }

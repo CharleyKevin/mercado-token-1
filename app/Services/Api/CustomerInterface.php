@@ -18,4 +18,5 @@ interface CustomerInterface
      */
     public function updateCustomer(Request $request, string $pathPicture);
     public function verifiedCustomer(int $userId) : bool;
+    public function getCustomer(int $userId) : User;
 }

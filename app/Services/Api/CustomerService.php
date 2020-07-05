@@ -36,4 +36,10 @@ class CustomerService implements CustomerInterface
 
         return null;
     }
+
+    public function getCustomer(int $userId): User
+    {
+        // TODO: Implement getCustomer() method.
+        return User::find($userId);
+    }
 }
