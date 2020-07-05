@@ -57,24 +57,25 @@ Route::get('/teste/mail-customer-view', function () {
     return new CustomerNotificationOrderCompleted($user, $token);
 });
 Route::get('/check-image', function () {
-        $client = new RekognitionClient([
-            'region'    => env('AWS_DEFAULT_REGION'),
-            'version'   => 'latest'
-        ]);
-
-    $photoPerson = file_get_contents(public_path() . '/images/foto_fabio.jpeg');
-    $photoPersonId = file_get_contents(public_path() . '/images/cnh_fabio.png');
-
-    $result = $client->compareFaces([
-                'QualityFilter' => 'AUTO', // NONE|AUTO|LOW|MEDIUM|HIGH
-                'SourceImage' => [ // REQUIRED
-                    'Bytes' => $photoPerson,
-            ],
-            'TargetImage' => [ // REQUIRED
-                    'Bytes' => $photoPersonId,
-            ],
-        ]);
-    $listFaceMatches = $result->get('FaceMatches');
+//    $client = new RekognitionClient([
+//        'region'    => env('AWS_DEFAULT_REGION'),
+//        'version'   => 'latest'
+//    ]);
+//
+//    $photoPerson = file_get_contents(public_path() . '/images/foto_fabio.jpeg');
+//    $photoPersonId = file_get_contents(public_path() . '/images/cnh_fabio.png');
+//
+//    $result = $client->compareFaces([
+//                'QualityFilter' => 'AUTO', // NONE|AUTO|LOW|MEDIUM|HIGH
+//                'SourceImage' => [ // REQUIRED
+//                    'Bytes' => $photoPerson,
+//            ],
+//            'TargetImage' => [ // REQUIRED
+//                    'Bytes' => $photoPersonId,
+//            ],
+//        ]);
+//    $listFaceMatches = $result->get('FaceMatches');
+    $listFaceMatches = [['Similarity' => 99.952247619629]];
 
     return view('face-match', compact('listFaceMatches'));
 });
