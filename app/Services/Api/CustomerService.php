@@ -16,7 +16,7 @@ class CustomerService implements CustomerInterface
 {
     public function verifiedCustomer(int $userId) : bool
     {
-        $userVerified = User::where('id', $userId)->where('verified', true)->get();
+        $userVerified = User::where('id', $userId)->where('base_picture', '<>', null)->get();
 
         if ($userVerified->count() > 0) return true;
 
