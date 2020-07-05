@@ -17,10 +17,11 @@ class CreateCustomerOrdersTable extends Migration
             $table->id();
             $table->uuid("uuid");
             $table->integer('customer_id');
-            $table->integer('user_id');
+            $table->integer('seller_id');
             $table->string('name_product');
+            $table->string('name_customer');
             $table->decimal('value_transaction', 10,2);
-            $table->integer('type_payment')->comment("1 = Boleto 2 = Cartão de Crédito 3 = Cartao de Débito");
+            $table->integer('type_payment')->comment("1 = Boleto 2 = Cartão de Crédito 3 = Cartao de Débito")->nullable();
             $table->string('payment_transaction')->comment("Code transaction gateway")->nullable();
             $table->string('token_transaction')->comment("Code transaction after facial recognition")->nullable();
             $table->timestamps();

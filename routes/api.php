@@ -34,4 +34,4 @@ Route::post('/sms-token', function (Request $request) {
     return response()->json(['status' => 'true', 'verification' => 'false']);
 });
 
-Route::get("/customer-orders", ["as" => "api.customer.orders", "uses" => "CustomerOrderController@getCustomerOrders"]);
+Route::get("/customer-orders", ["as" => "api.customer.orders", "uses" => "Api\CustomerOrderController@getCustomerOrders"]);

@@ -21,7 +21,7 @@ class CustomerOrderController extends Controller
         $this->customerOrderInterface = $customerOrderInterface;
     }
 
-    public function getCustomerOrderList()
+    public function getCustomerOrders()
     {
         return $this->customerOrderInterface->getCustomerOrders();
     }
