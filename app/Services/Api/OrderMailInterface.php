@@ -9,8 +9,16 @@ use Illuminate\Support\Collection;
 interface OrderMailInterface
 {
     /**
-     * @param Collection $mails
-     * @return Collection
+     * @param array $user
+     * @param String $token
+     * @return bool
      */
-    public function sendMail(Collection $mails) : Collection;
+    public function sendMailCustomer(Array $user, String $token) : bool;
+
+    /**
+     * @param array $user
+     * @param String $token
+     * @return bool
+     */
+    public function sendMailSeller(Array $user, String $token) : bool;
 }
