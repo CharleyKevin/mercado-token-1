@@ -55,8 +55,6 @@ class CustomerOrderService implements CustomerOrderInterface
 
         if ($user->count() < 1) return false;
 
-        return $user;
-
         return $this->faceMatchInterface->validateFaceWithBase($user['base_picture'],$request->file('selfie'));
     }
 
