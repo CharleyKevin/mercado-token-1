@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Uuids;
 
-class User extends Model
+class CustomerOrder extends Model
 {
     use Uuids;
 

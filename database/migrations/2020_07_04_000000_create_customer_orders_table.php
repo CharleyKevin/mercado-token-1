@@ -16,6 +16,8 @@ class CreateCustomerOrdersTable extends Migration
         Schema::create('customer_orders', function (Blueprint $table) {
             $table->id();
             $table->uuid("uuid");
+            $table->integer('customer_id');
+            $table->integer('user_id');
             $table->string('name_product');
             $table->decimal('value_transaction', 10,2);
             $table->integer('type_payment')->comment("1 = Boleto 2 = Cartão de Crédito 3 = Cartao de Débito");
