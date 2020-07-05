@@ -18,20 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/payment', function (Request $request) {
-    return response()->json(['transaction_id' => '12frkejh2343fkfbnjkf', 'verification' => true, 'status' => 'true' ]);
-});
-
-Route::post('/token-validation', function (Request $request) {
-    return response()->json(['status' => 'false', 'verification' => 'false']);
-});
-
-Route::post('/sms-token', function (Request $request) {
-    return response()->json(['status' => 'true', 'verification' => 'false']);
-});
-
-Route::post('/sms-token', function (Request $request) {
-    return response()->json(['status' => 'true', 'verification' => 'false']);
-});
-
 Route::get("/customer-orders", ["as" => "api.customer.orders", "uses" => "Api\CustomerOrderController@getCustomerOrders"]);
+
+Route::post('/customer-orders', ["as" => "api.customer.orders", "uses" => "Api\CustomerOrderController@createCustomerOrders"]);
+
+Route::post('/customer-orders/facematch', ["as" => "api.customer.orders", "uses" => "Api\CustomerOrderController@validateCustomerOrder"]);
+
+Route::post('/customer-orders/first-facematch', ["as" => "api.customer.orders", "uses" => "Api\CustomerOrderController@validateFirstCustomerOrder"]);
+
+Route::post('/customer-orders/facematch', ["as" => "api.customer.orders", "uses" => "Api\CustomerOrderController@validateCustomerOrder"]);
