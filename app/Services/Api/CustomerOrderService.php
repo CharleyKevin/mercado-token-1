@@ -8,10 +8,22 @@ use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
+use Webpatser\Uuid\Uuid;
 
 
 class CustomerOrderService implements CustomerOrderInterface
 {
+    /**
+     * @var FaceMatchInterface
+     */
+    private $faceMatchInterface;
+
+    public function __construct(FaceMatchInterface $faceMatchInterface)
+    {
+        $this->faceMatchInterface = $faceMatchInterface;
+    }
+
     public function getCustomerOrders(): Collection
     {
         return CustomerOrder::all();
@@ -41,16 +53,15 @@ class CustomerOrderService implements CustomerOrderInterface
     {
         $user = User::find($request['user_id']);
 
-        // image user is very similar then image face
-        // $request['base_picture'] = $request['picture']
+        if ($user->count() < 1) return false;
 
-        return true;
+        return $this->faceMatchInterface->validateFaceWithBase($user['base_picture'],$request->file('picture'));
     }
 
     public function validateCustomerOrders(string $uuid): CustomerOrder
     {
-        $payment_transaction = 'dgbkfmgbjgbrovmev';
-        $token_transaction = 'dmvkfbnfjkbngfbmdlkbmel';
+        $payment_transaction = Uuid::generate();
+        $token_transaction = Uuid::generate();
 
         $customerOrder = CustomerOrder::where('uuid', $uuid)->first();
 

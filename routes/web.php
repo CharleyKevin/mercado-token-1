@@ -75,7 +75,8 @@ Route::get('/check-image', function () {
 //            ],
 //        ]);
 //    $listFaceMatches = $result->get('FaceMatches');
-    $listFaceMatches = [['Similarity' => 99.952247619629]];
+//    dd($listFaceMatches);
+//    $listFaceMatches = [['Similarity' => 99.952247619629]];
 
     return view('face-match', compact('listFaceMatches'));
 });
