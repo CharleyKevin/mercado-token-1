@@ -71,7 +71,7 @@ class CustomerOrderController extends Controller
     public function validateFirstCustomerOrder(Request $request)
     {
 
-        $basePicture = $request->file('base_picture');
+        $basePicture = $request->file('selfie');
 
         $pathPicture = $basePicture->store('base_picture','local');
 
