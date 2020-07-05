@@ -8,6 +8,8 @@ use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use SebastianBergmann\Environment\Console;
+use Symfony\Component\Console\Logger\ConsoleLogger;
 
 
 class CustomerService implements CustomerInterface
@@ -21,12 +23,17 @@ class CustomerService implements CustomerInterface
         return false;
     }
 
-    public function updateCustomer(Request $request)
+    public function updateCustomer(Request $request, string $pathPicture)
     {
         $user = User::find($request['user_id']);
 
         if (empty($user)) return null;
 
-        return $user->update(['base_picture' => $request['base_picture']]);
+        $user->base_picture = $pathPicture;
+        $user->save();
+
+        if ($user->wasChanged('base_picture')) return User::find($request['user_id']);
+
+        return null;
     }
 }

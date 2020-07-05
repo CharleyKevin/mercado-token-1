@@ -13,8 +13,9 @@ interface CustomerInterface
 {
     /**
      * @param Request $request
+     * @param String $pathPicture
      * @return Collection
      */
-    public function updateCustomer(Request $request);
+    public function updateCustomer(Request $request, string $pathPicture);
     public function verifiedCustomer(int $userId) : bool;
 }

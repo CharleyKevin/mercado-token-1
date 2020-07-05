@@ -6,26 +6,41 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCustomerOrdersRequest;
 use App\Services\Api\CustomerInterface;
 use App\Services\Api\CustomerOrderInterface;
+use App\Services\Api\OrderMailInterface;
+use App\Services\Api\SellerInterface;
 use Illuminate\Http\Request;
+use SebastianBergmann\Environment\Console;
 
 class CustomerOrderController extends Controller
 {
     /**
      * @var CustomerInterface
      * @var CustomerOrderInterface
+     * @var OrderMailInterface
      */
     private $customerInterface;
     private $customerOrderInterface;
+    private $orderMailInterface;
+    private $sellerInterface;
 
     /**
      * CustomerOrderController constructor.
      * @param CustomerInterface $customerInterface
      * @param CustomerOrderInterface $customerOrderInterface
+     * @param OrderMailInterface $orderMailInterface
+     * @param SellerInterface $sellerInterface
      */
-    public function __construct(CustomerInterface $customerInterface, CustomerOrderInterface $customerOrderInterface)
+    public function __construct(
+        CustomerInterface $customerInterface,
+        CustomerOrderInterface $customerOrderInterface,
+        OrderMailInterface $orderMailInterface,
+        SellerInterface $sellerInterface
+    )
     {
         $this->customerInterface = $customerInterface;
         $this->customerOrderInterface = $customerOrderInterface;
+        $this->orderMailInterface = $orderMailInterface;
+        $this->sellerInterface = $sellerInterface;
     }
 
     public function getCustomerOrders()
@@ -47,7 +62,6 @@ class CustomerOrderController extends Controller
                 "verification" => $verifiedCustomer,
                 "status_order" => "created"
             ]);
-
         }
 
         return response()->json(["status_order" => "method not allowed"],403);
@@ -55,9 +69,13 @@ class CustomerOrderController extends Controller
 
     public function validateFirstCustomerOrder(Request $request)
     {
-        $userUpdate = $this->customerInterface->updateCustomer($request);
+        $basePicture = $request->file('base_picture');
 
-        if (!$userUpdate) {
+        $pathPicture = $basePicture->store('base_picture','local');
+
+        $customer = $this->customerInterface->updateCustomer($request, $pathPicture);
+
+        if ($customer == null) {
             return response()->json([
                 "payment_transaction" => $request['payment_transaction'],
                 "token_transaction" => "",
@@ -70,6 +88,11 @@ class CustomerOrderController extends Controller
         if ($verification) {
 
             $customerOrder = $this->customerOrderInterface->validateCustomerOrders($request['payment_transaction']);
+
+            $seller = $this->sellerInterface->getSeller($customerOrder['seller_id']);
+
+            $this->orderMailInterface->sendMailCustomer($customer->toArray(),$customerOrder['token_transaction']);
+            $this->orderMailInterface->sendMailSeller($seller->toArray(),$customerOrder['token_transaction']);
 
             return response()->json([
                 "payment_transaction" => $customerOrder['uuid'],
@@ -87,22 +110,35 @@ class CustomerOrderController extends Controller
 
     public function validateCustomerOrder(Request $request)
     {
-        $verification = $this->customerOrderInterface->verifiedCustomerOrders($request);
+        try {
+            $verification = $this->customerOrderInterface->verifiedCustomerOrders($request);
 
-        if ($verification){
-            $customerOrder = $this->customerOrderInterface->validateCustomerOrders($request['payment_transaction']);
+            if ($verification) {
+                $customerOrder = $this->customerOrderInterface->validateCustomerOrders($request['payment_transaction']);
+
+                $seller = $this->sellerInterface->getSeller($customerOrder['seller_id']);
+
+                $this->orderMailInterface->sendMailCustomer($customer->toArray(),$customerOrder['token_transaction']);
+                $this->orderMailInterface->sendMailSeller($seller->toArray(),$customerOrder['token_transaction']);
+
+                return response()->json([
+                    "payment_transaction" => $customerOrder['uuid'],
+                    "token_transaction" => $customerOrder['token_transaction'],
+                    "verification" => $verification,
+                ]);
+            }
 
             return response()->json([
-                "payment_transaction" => $customerOrder['uuid'],
-                "token_transaction" => $customerOrder['token_transaction'],
+                "payment_transaction" => $request['payment_transaction'],
+                "token_transaction" => "",
                 "verification" => $verification,
             ]);
+        }catch (\Throwable $exception){
+            return response()->json([
+                "payment_transaction" => "",
+                "token_transaction" => "",
+                "verification" => "",
+            ],500);
         }
-
-        return response()->json([
-            "payment_transaction" => $request['payment_transaction'],
-            "token_transaction" => "",
-            "verification" => $verification,
-        ]);
     }
 }

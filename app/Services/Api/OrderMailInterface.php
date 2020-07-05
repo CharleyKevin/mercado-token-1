@@ -13,12 +13,12 @@ interface OrderMailInterface
      * @param String $token
      * @return bool
      */
-    public function sendMailCustomer(Array $user, String $token) : bool;
+    public function sendMailCustomer(Array $user, String $token) : void;
 
     /**
      * @param array $user
      * @param String $token
      * @return bool
      */
-    public function sendMailSeller(Array $user, String $token) : bool;
+    public function sendMailSeller(Array $user, String $token) : void;
 }

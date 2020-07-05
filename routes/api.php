@@ -25,5 +25,3 @@ Route::post('/customer-orders', ["as" => "api.customer.orders", "uses" => "Api\C
 Route::post('/customer-orders/facematch', ["as" => "api.customer.orders", "uses" => "Api\CustomerOrderController@validateCustomerOrder"]);
 
 Route::post('/customer-orders/first-facematch', ["as" => "api.customer.orders", "uses" => "Api\CustomerOrderController@validateFirstCustomerOrder"]);
-
-Route::post('/customer-orders/facematch', ["as" => "api.customer.orders", "uses" => "Api\CustomerOrderController@validateCustomerOrder"]);
