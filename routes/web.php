@@ -57,23 +57,23 @@ Route::get('/teste/mail-customer-view', function () {
     return new CustomerNotificationOrderCompleted($user, $token);
 });
 Route::get('/check-image', function () {
-        $client = new RekognitionClient([
-            'region'    => env('AWS_DEFAULT_REGION'),
-            'version'   => 'latest'
-        ]);
+//        $client = new RekognitionClient([
+//            'region'    => env('AWS_DEFAULT_REGION'),
+//            'version'   => 'latest'
+//        ]);
 
-    $photoPerson = Storage::disk('local')->get('images/foto_fabio.jpeg');
-    $photoPersonId = Storage::disk('local')->get('images/cnh_fabio.png');
-    $result = $client->compareFaces([
-                'QualityFilter' => 'AUTO', // NONE|AUTO|LOW|MEDIUM|HIGH
-                'SourceImage' => [ // REQUIRED
-                    'Bytes' => $photoPerson,
-            ],
-            'TargetImage' => [ // REQUIRED
-                    'Bytes' => $photoPersonId,
-            ],
-        ]);
-    $listFaceMatches = $result->get('FaceMatches');
+//    $photoPerson = Storage::disk('local')->get('images/foto_fabio.jpeg');
+//    $photoPersonId = Storage::disk('local')->get('images/cnh_fabio.png');
+//    $result = $client->compareFaces([
+//                'QualityFilter' => 'AUTO', // NONE|AUTO|LOW|MEDIUM|HIGH
+//                'SourceImage' => [ // REQUIRED
+//                    'Bytes' => $photoPerson,
+//            ],
+//            'TargetImage' => [ // REQUIRED
+//                    'Bytes' => $photoPersonId,
+//            ],
+//        ]);
+//    $listFaceMatches = $result->get('FaceMatches');
 
-    return view('face-match', compact('listFaceMatches'));
+//    return view('face-match', compact('listFaceMatches'));
 });
