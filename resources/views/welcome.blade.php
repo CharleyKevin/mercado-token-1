@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Mercado Tokens, a sua segurança começa aqui.</title>
-
+        <meta property="og:image" content="http://api.mercadotokens.com.br/images/logo.jpeg" />
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
