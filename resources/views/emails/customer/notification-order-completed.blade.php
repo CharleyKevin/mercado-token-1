@@ -2,11 +2,18 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- utf-8 works for most cases -->
+    <!-- <meta name="viewport" content="width=device-width"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=
+    =1.0">
+    <!-- Forcing initial-scale shouldn't be necessary -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Use the latest (edge) version of IE rendering engine -->
     <title>Mercado Libre</title>
+    <!-- The title tag shows in email notifications, like Android 4.4. -->
     <!-- CSS Reset -->
-    <link rel="shortcut icon" href="http://static.mlstatic.com/org-img/chico/img/favicon.ico?new"/>
+    <link rel="shortcut icon" href="http://static.mlstatic.com/org-img/chico/img/favicon.ico?new" />
+    <!-- The title tag shows in email notifications, like Android 4.4. -->
     <!-- CSS Reset -->
     <link rel="stylesheet" href="https://http2.mlstatic.com/ui/webfonts/v3.0.0/proxima-nova/300-400.woff2.css">
 
@@ -14,7 +21,6 @@
         p strong {
             font-weight: normal;
         }
-
         html,
         body {
             margin: 0 auto !important;
@@ -25,74 +31,63 @@
             /* Firefox */
             image-rendering: -o-crisp-edges;
             /* Opera */
+            image-rendering: -webkit-optimize-contrast;
             /* Webkit (non-standard naming) */
             image-rendering: crisp-edges;
             -ms-interpolation-mode: nearest-neighbor;
         }
-
         /* What it does: Stops email clients resizing small text. */
         * {
             -ms-text-size-adjust: 100%;
             -webkit-text-size-adjust: 100%;
         }
-
         /* What it does: Centers email on Android 4.4 */
         div[style*='margin: 16px 0'] {
             margin: 0 !important;
         }
-
         /* What it does: Stops Outlook from adding extra spacing to tables. */
         table,
         td {
             mso-table-lspace: 0pt !important;
             mso-table-rspace: 0pt !important;
         }
-
         a, td, h1, h2, h3, h4, h5, div {
-            font-family: 'Proxima Nova', Helvetica, Arial !important;
+            font-family: 'Proxima Nova', Helvetica, Arial  !important;
         }
-
         /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table al=
 ignment bug. Applies table-layout to the first 2 tables then removes for an=
 ything nested deeper. */
         table {
-            font-family: 'Proxima Nova', Helvetica, Arial !important;
+            font-family: 'Proxima Nova', Helvetica, Arial  !important;
             border-spacing: 0 !important;
             margin: 0 auto;
         }
-
         table table table {
             table-layout: auto;
         }
-
         /* What it does: Uses a better rendering method when resizing images in =
 IE. */
         img {
             -ms-interpolation-mode: bicubic;
         }
-
         table, tr, td, span, a {
             -webkit-text-size-adjust: none;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-
         .bold {
             font-weight: 400;
         }
-
         .mail__title {
             width: 78.2% !important;
         }
-
         .div-table-wrapper {
             padding: 0;
             background-color: #fff;
         }
-
         /* This is necessary because of some interesting browsers... (bugs) */
         .im {
-            text-decoration: none !important;
+            text-decoration:none !important;
             font-family: 'Proxima Nova', Arial, Helvetica, sans-serif !important;
             font-weight: 300 !important;
             font-size: 14px !important;
@@ -103,28 +98,22 @@ IE. */
             max-width: 367px !important;
             width: 100% !important;
         }
-
         .table-header-withouttitle {
-            display: none;
+            display:none;
         }
-
         .color_fuente {
-            color: #999999;
+            color:#999999;
         }
-
         @media only screen and (min-width: 480px) {
             .title {
                 width: 78.2% !important;
             }
-
             .title span {
                 font-size: 26px !important;
             }
-
             .responsive-width {
                 display: block !important;
             }
-
             .responsive-width div {
                 height: 50px !important;
                 border: solid !important;
@@ -136,7 +125,6 @@ IE. */
                 background-color: #fff !important;
                 display: block !important;
             }
-
             .main-card-shadow {
                 border: solid !important;
                 box-shadow: 0 10px 10px #eeeeee !important;
@@ -146,7 +134,6 @@ IE. */
                 width: 78.2% !important;
                 margin: 0 auto !important;
             }
-
             .main-card-shadow-withouttitle {
                 border: solid !important;
                 box-shadow: 0 10px 10px #eeeeee !important;
@@ -156,48 +143,41 @@ IE. */
                 width: 78.2% !important;
                 margin: 0 auto !important;
             }
-
             .div-table-wrapper {
                 background-color: #f8f8f8;
             }
-
             .responsive-width {
                 width: 78.2% !important;
             }
-
             .main-card-shadow,
             .responsive-width {
                 width: 78.2% !important;
             }
-
             .mail__title {
                 display: inline-block;
             }
-
             .mail__text-card {
                 line-height: 1.17 !important;
             }
-
             .mail__buttons-container {
                 max-width: 70% !important;
                 height: 36px !important;
             }
-
             /* Force break-line in disclaimer when is desktop */
             p span {
                 display: block;
             }
-
             .table-header-withouttitle {
-                display: block;
+                display:block;
             }
         }
     </style>
 </head>
 <body>
 <!-- PREHEADER -->
-<span class="mail__preheader" style="font-size:1px; color: transparent; background-color: transparent; display:none
-!important">
+<span class="mail__preheader"
+      style="font-size:1px; color: transparent; background-color: tran=
+sparent; display:none !important">
 
 </span>
 <!-- CONTAINER HACK - DONT REMOVE -->
@@ -218,20 +198,17 @@ IE. */
                 <tr style="background-color: #ffffff;">
                     <td class="logo" style="padding: 11px 15px 8px 15px;">
                         <img class="mail__img-header" title="iconTitle" alt="MercadoLibre" border="0" width="125"
-                             src="https://http2.mlstatic.com/ui/navigation/4.1.4/mercadopago/logo__large.png"
-                             alt="Mercado Pago" title="Mercado Pago">
+                             src="https://http2.mlstatic.com/ui/navigation/4.1.4/mercadopago/logo__large.png" alt="Mercado Pago" title="Mercado Pago">
                     </td>
-                    <td class="logo"
-                        style="padding: 11px 23px 8px 15px; float:right; font-size:12px; font-weight: 300; line-height: 1.0; color:#333333; font-family: 'Proxima Nova', Helvetica, Arial ,sans-serif;">
-                        <p style="float: right;">Fabio</p>
+                    <td class="logo" style="padding: 11px 23px 8px 15px; float:right; font-size:12px; font-weight: 300; line-height: 1.0; color:#333333; font-family: 'Proxima Nova', Helvetica, Arial ,sans-serif;">
+                        <p style="float: right;">{{$name}}</p>
                     </td>
                 </tr>
                 </tbody>
             </table>
 
 
-            <table class="table-header-withouttitle" align="center" width="100%" cellspacing="0" cellpadding="0"
-                   border="0" style="text-align:center;background-color: #f8f8f8;">
+            <table class="table-header-withouttitle" align="center" width="100%" cellspacing="0" cellpadding="0" border="0" style="text-align:center;background-color: #f8f8f8;">
                 <tbody class="mail__img-footer">
                 <tr style="background-color:#f8f8f8 !important;">
                     <td colspan="3" align="center" height="20"></td>
@@ -243,8 +220,7 @@ IE. */
             <!-- content -->
             <div id="div-table-wrapper" class="div-table-wrapper" style="text-align:center;margin: 0 auto;">
 
-                <table class="main-card-shadow-withouttitle" bgcolor="#ffffff" align="center" border="0" cellpadding="0"
-                       cellspacing="0" style="box-shadow: none; border: none; padding: 48px 10px 0; text-align:center;">
+                <table class="main-card-shadow-withouttitle" bgcolor="#ffffff" align="center" border="0" cellpadding="0" cellspacing="0" style="box-shadow: none; border: none; padding: 48px 10px 0; text-align:center;">
 
                     <tbody>
 
@@ -253,7 +229,7 @@ IE. */
                             <div
                                 style="padding-left: 25px;padding-right: 25px;font-family: 'Proxima Nova', Arial, Helvetica, sans-serif , Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: 300; line-height=1.17; margin: 0px; color: #333;">
                                 <p style="margin: 0; color:#666; font-size: 18px;">
-                                    O token de confirmação da sua <b>venda</b> foi gerado com sucesso:
+                                    O token de confirmação da sua <b>compra</b> foi gerado com sucesso:
                                 </p>
                             </div>
                         </td>
@@ -262,7 +238,8 @@ IE. */
                         <td align="center">
                             <div style="padding: 20px 0; font-family: 'Proxima Nova', Arial, Helvetica; font-size: 18px; font-weight:
         bold; line-height: 1.22; margin: 0px; color: #333;">
-                                <p style="margin: 0; color:#666; font-size: 18px;">dassadsa
+                                <p style="margin: 0; color:#666; font-size: 18px;">
+                                    {{$token}}
                                 </p>
                             </div>
                         </td>
@@ -284,7 +261,7 @@ IE. */
 
 
                     <tr style="background-color:#ffffff !important;">
-                        <td align="center" height="48"></td>
+                        <td  align="center" height="48"></td>
                     </tr>
 
                     </tbody>
@@ -312,10 +289,7 @@ IE. */
                 <tr class="color_fuente" style="background-color: #f8f8f8; =
 !important;">
                     <td colspan="3" align="center">
-                        <span class="color_fuente"
-                              style="font-family: 'Proxima Nova', Arial, Helvetica, sans-serif;font-size: 13px;font-weight: 300;line-height: 1.08;text-align: center;color: #999999;">Precisa de ajuda?</span>
-                        <a href="https://www.mercadopago.com.br/ajuda" title="Fale conosco"
-                           style="text-decoration: none; font-weight: normal; color: #3483fa;">Fale
+                        <span class="color_fuente" style="font-family: 'Proxima Nova', Arial, Helvetica, sans-serif;font-size: 13px;font-weight: 300;line-height: 1.08;text-align: center;color: #999999;">Precisa de ajuda?</span> <a href="https://www.mercadopago.com.br/ajuda" title="Fale conosco" style="text-decoration: none; font-weight: normal; color: #3483fa;" >Fale
                             conosco</a>
                     </td>
                 </tr>

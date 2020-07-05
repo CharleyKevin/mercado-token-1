@@ -223,7 +223,7 @@ IE. */
                     </td>
                     <td class="logo"
                         style="padding: 11px 23px 8px 15px; float:right; font-size:12px; font-weight: 300; line-height: 1.0; color:#333333; font-family: 'Proxima Nova', Helvetica, Arial ,sans-serif;">
-                        <p style="float: right;">Fabio</p>
+                        <p style="float: right;">{{$name}}</p>
                     </td>
                 </tr>
                 </tbody>
@@ -251,7 +251,8 @@ IE. */
                     <tr>
                         <td align="center">
                             <div
-                                style="padding-left: 25px;padding-right: 25px;font-family: 'Proxima Nova', Arial, Helvetica, sans-serif , Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: 300; line-height=1.17; margin: 0px; color: #333;">
+                                style="padding-left: 25px;padding-right: 25px;font-family: 'Proxima Nova', Arial,
+                                Helvetica, sans-serif , Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: 300; line-height:1.17; margin: 0px; color: #333;">
                                 <p style="margin: 0; color:#666; font-size: 18px;">
                                     O token de confirmação da sua <b>venda</b> foi gerado com sucesso:
                                 </p>
@@ -262,7 +263,8 @@ IE. */
                         <td align="center">
                             <div style="padding: 20px 0; font-family: 'Proxima Nova', Arial, Helvetica; font-size: 18px; font-weight:
         bold; line-height: 1.22; margin: 0px; color: #333;">
-                                <p style="margin: 0; color:#666; font-size: 18px;">dassadsa
+                                <p style="margin: 0; color:#666; font-size: 18px;">
+                                    {{$token}}
                                 </p>
                             </div>
                         </td>
