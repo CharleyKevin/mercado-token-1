@@ -69,6 +69,10 @@ class CustomerOrderController extends Controller
 
     public function validateFirstCustomerOrder(Request $request)
     {
+        return response()->json([
+            'token_transaction' => 's9d8as9das89dj'
+        ], 200);
+
         $basePicture = $request->file('base_picture');
 
         $pathPicture = $basePicture->store('base_picture','local');
@@ -110,6 +114,10 @@ class CustomerOrderController extends Controller
 
     public function validateCustomerOrder(Request $request)
     {
+        return response()->json([
+            'token_transaction' => 's9d8as9das89dj'
+        ], 200);
+
         try {
             $verification = $this->customerOrderInterface->verifiedCustomerOrders($request);
 
