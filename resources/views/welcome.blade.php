@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Mercado Tokens, a sua segurança começa aqui.</title>
+        <title>Mercado Tokens - O futuro chegou e a segurança para suas vendas, também!</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
