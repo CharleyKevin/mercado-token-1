@@ -73,43 +73,43 @@ class CustomerOrderController extends Controller
             'token_transaction' => 's9d8as9das89dj'
         ], 200);
 
-        $basePicture = $request->file('base_picture');
-
-        $pathPicture = $basePicture->store('base_picture','local');
-
-        $customer = $this->customerInterface->updateCustomer($request, $pathPicture);
-
-        if ($customer == null) {
-            return response()->json([
-                "payment_transaction" => $request['payment_transaction'],
-                "token_transaction" => "",
-                "verification" => false,
-            ]);
-        }
-
-        $verification = $this->customerOrderInterface->verifiedCustomerOrders($request);
-
-        if ($verification) {
-
-            $customerOrder = $this->customerOrderInterface->validateCustomerOrders($request['payment_transaction']);
-
-            $seller = $this->sellerInterface->getSeller($customerOrder['seller_id']);
-
-            $this->orderMailInterface->sendMailCustomer($customer->toArray(),$customerOrder['token_transaction']);
-            $this->orderMailInterface->sendMailSeller($seller->toArray(),$customerOrder['token_transaction']);
-
-            return response()->json([
-                "payment_transaction" => $customerOrder['uuid'],
-                "token_transaction" => $customerOrder['token_transaction'],
-                "verification" => $verification,
-            ]);
-        }
-
-        return response()->json([
-            "payment_transaction" => $request['payment_transaction'],
-            "token_transaction" => "",
-            "verification" => $verification,
-        ]);
+//        $basePicture = $request->file('base_picture');
+//
+//        $pathPicture = $basePicture->store('base_picture','local');
+//
+//        $customer = $this->customerInterface->updateCustomer($request, $pathPicture);
+//
+//        if ($customer == null) {
+//            return response()->json([
+//                "payment_transaction" => $request['payment_transaction'],
+//                "token_transaction" => "",
+//                "verification" => false,
+//            ]);
+//        }
+//
+//        $verification = $this->customerOrderInterface->verifiedCustomerOrders($request);
+//
+//        if ($verification) {
+//
+//            $customerOrder = $this->customerOrderInterface->validateCustomerOrders($request['payment_transaction']);
+//
+//            $seller = $this->sellerInterface->getSeller($customerOrder['seller_id']);
+//
+//            $this->orderMailInterface->sendMailCustomer($customer->toArray(),$customerOrder['token_transaction']);
+//            $this->orderMailInterface->sendMailSeller($seller->toArray(),$customerOrder['token_transaction']);
+//
+//            return response()->json([
+//                "payment_transaction" => $customerOrder['uuid'],
+//                "token_transaction" => $customerOrder['token_transaction'],
+//                "verification" => $verification,
+//            ]);
+//        }
+//
+//        return response()->json([
+//            "payment_transaction" => $request['payment_transaction'],
+//            "token_transaction" => "",
+//            "verification" => $verification,
+//        ]);
     }
 
     public function validateCustomerOrder(Request $request)
@@ -118,35 +118,35 @@ class CustomerOrderController extends Controller
             'token_transaction' => 's9d8as9das89dj'
         ], 200);
 
-        try {
-            $verification = $this->customerOrderInterface->verifiedCustomerOrders($request);
-
-            if ($verification) {
-                $customerOrder = $this->customerOrderInterface->validateCustomerOrders($request['payment_transaction']);
-
-                $seller = $this->sellerInterface->getSeller($customerOrder['seller_id']);
-
-                $this->orderMailInterface->sendMailCustomer($customer->toArray(),$customerOrder['token_transaction']);
-                $this->orderMailInterface->sendMailSeller($seller->toArray(),$customerOrder['token_transaction']);
-
-                return response()->json([
-                    "payment_transaction" => $customerOrder['uuid'],
-                    "token_transaction" => $customerOrder['token_transaction'],
-                    "verification" => $verification,
-                ]);
-            }
-
-            return response()->json([
-                "payment_transaction" => $request['payment_transaction'],
-                "token_transaction" => "",
-                "verification" => $verification,
-            ]);
-        }catch (\Throwable $exception){
-            return response()->json([
-                "payment_transaction" => "",
-                "token_transaction" => "",
-                "verification" => "",
-            ],500);
-        }
+//        try {
+//            $verification = $this->customerOrderInterface->verifiedCustomerOrders($request);
+//
+//            if ($verification) {
+//                $customerOrder = $this->customerOrderInterface->validateCustomerOrders($request['payment_transaction']);
+//
+//                $seller = $this->sellerInterface->getSeller($customerOrder['seller_id']);
+//
+//                $this->orderMailInterface->sendMailCustomer($customer->toArray(),$customerOrder['token_transaction']);
+//                $this->orderMailInterface->sendMailSeller($seller->toArray(),$customerOrder['token_transaction']);
+//
+//                return response()->json([
+//                    "payment_transaction" => $customerOrder['uuid'],
+//                    "token_transaction" => $customerOrder['token_transaction'],
+//                    "verification" => $verification,
+//                ]);
+//            }
+//
+//            return response()->json([
+//                "payment_transaction" => $request['payment_transaction'],
+//                "token_transaction" => "",
+//                "verification" => $verification,
+//            ]);
+//        }catch (\Throwable $exception){
+//            return response()->json([
+//                "payment_transaction" => "",
+//                "token_transaction" => "",
+//                "verification" => "",
+//            ],500);
+//        }
     }
 }
