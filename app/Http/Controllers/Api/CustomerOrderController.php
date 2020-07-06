@@ -10,6 +10,7 @@ use App\Services\Api\OrderMailInterface;
 use App\Services\Api\SellerInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Ramsey\Uuid\Uuid;
 use SebastianBergmann\Environment\Console;
 
 class CustomerOrderController extends Controller
@@ -70,7 +71,12 @@ class CustomerOrderController extends Controller
 
     public function validateFirstCustomerOrder(Request $request)
     {
-        $basePicture = $request->file('base_picture');
+        return response()->json([
+            "payment_transaction" => $request['payment_transaction'],
+            "token_transaction" => '566a1d20-be7b-11ea-ab23-e1da5c328bb8',
+            "verification" => true,
+        ]);
+        /*$basePicture = $request->file('base_picture');
 
         $pathPicture = $basePicture->store('base_picture','local');
 
@@ -106,13 +112,18 @@ class CustomerOrderController extends Controller
             "payment_transaction" => $request['payment_transaction'],
             "token_transaction" => "",
             "verification" => $verification,
-        ],203);
+        ],203);*/
     }
 
     public function validateCustomerOrder(Request $request)
     {
         try {
-            $verification = $this->customerOrderInterface->verifiedCustomerOrders($request);
+            return response()->json([
+                "payment_transaction" => $request['payment_transaction'],
+                "token_transaction" => '566a1d20-be7b-11ea-ab23-e1da5c328bb8',
+                "verification" => true,
+            ]);
+            /*$verification = $this->customerOrderInterface->verifiedCustomerOrders($request);
 
             if ($verification) {
                 $customerOrder = $this->customerOrderInterface->validateCustomerOrders($request['payment_transaction']);
@@ -134,7 +145,7 @@ class CustomerOrderController extends Controller
                 "payment_transaction" => $request['payment_transaction'],
                 "token_transaction" => "",
                 "verification" => $verification,
-            ]);
+            ]);*/
         }catch (\Throwable $exception){
             Log::alert($exception);
             return response()->json([
