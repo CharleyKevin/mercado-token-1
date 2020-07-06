@@ -23,6 +23,7 @@ class FaceMatchService implements FaceMatchInterface
 
         $pathPicture = $picture->store('temp_picture','local');
 
+        if ($path_base_picture == null) return false;
 
         $result = $client->compareFaces([
             'QualityFilter' => 'AUTO', // NONE|AUTO|LOW|MEDIUM|HIGH
