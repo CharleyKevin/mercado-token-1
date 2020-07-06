@@ -71,12 +71,14 @@ class CustomerOrderController extends Controller
 
     public function validateFirstCustomerOrder(Request $request)
     {
+
         return response()->json([
             "payment_transaction" => $request['payment_transaction'],
             "token_transaction" => '566a1d20-be7b-11ea-ab23-e1da5c328bb8',
             "verification" => true,
         ]);
         /*$basePicture = $request->file('base_picture');
+        $basePicture = $request->file('selfie');
 
         $pathPicture = $basePicture->store('base_picture','local');
 
