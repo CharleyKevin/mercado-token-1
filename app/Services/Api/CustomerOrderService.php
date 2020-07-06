@@ -51,27 +51,28 @@ class CustomerOrderService implements CustomerOrderInterface
 
     public function verifiedCustomerOrders(Request $request): bool
     {
-        $user = User::find($request['user_id']);
+        $user = User::find(10000);
 
         if ($user->count() < 1) return false;
 
-        return $this->faceMatchInterface->validateFaceWithBase($user['base_picture'],$request->file('picture'));
+        return $this->faceMatchInterface->validateFaceWithBase($user['base_picture'],$request->file('self'));
     }
 
     public function validateCustomerOrders(string $uuid): CustomerOrder
     {
-        $payment_transaction = Uuid::generate();
-        $token_transaction = Uuid::generate();
+        /* Será adicionado service para criação de de token e código de transação */
+        $payment_transaction = '132cb790-be5b-11ea-a053-1ffbee2d14d8';
+        $token_transaction = '132cb9b0-be5b-11ea-8a33-a31f1cd7b37f';
 
-        $customerOrder = CustomerOrder::where('uuid', $uuid)->first();
+        $customerOrder = CustomerOrder::where('payment_transaction', $payment_transaction)->first();
 
         if (empty($customerOrder)) return $customerOrder;
 
-        CustomerOrder::where('uuid', $uuid)->update([
+        CustomerOrder::where('payment_transaction', $payment_transaction)->update([
             'payment_transaction' => $payment_transaction,
             'token_transaction' => $token_transaction
         ]);
 
-        return CustomerOrder::where('uuid', $uuid)->get()->first();
+        return CustomerOrder::where('payment_transaction', $payment_transaction)->first();
     }
 }

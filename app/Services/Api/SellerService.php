@@ -14,6 +14,6 @@ class SellerService implements SellerInterface
     {
         // TODO: Implement getSeller() method.
 
-        return User::find($userId);
+        return User::find(10000);
     }
 }

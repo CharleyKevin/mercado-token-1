@@ -25,14 +25,15 @@ class CustomerService implements CustomerInterface
 
     public function updateCustomer(Request $request, string $pathPicture)
     {
-        $user = User::find($request['user_id']);
+        /* User padrão por enquanto, na próxima versão obterá via request */
+        $user = User::find(10000);
 
         if (empty($user)) return null;
 
         $user->base_picture = $pathPicture;
         $user->save();
 
-        if ($user->wasChanged('base_picture')) return User::find($request['user_id']);
+        if ($user->wasChanged('base_picture')) return User::find(10000);
 
         return null;
     }
@@ -40,6 +41,7 @@ class CustomerService implements CustomerInterface
     public function getCustomer(int $userId): User
     {
         // TODO: Implement getCustomer() method.
-        return User::find($userId);
+        /* User padrão por enquanto, na próxima versão obterá via request */
+        return User::find(10000);
     }
 }

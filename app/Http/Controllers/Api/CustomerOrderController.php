@@ -71,12 +71,7 @@ class CustomerOrderController extends Controller
 
     public function validateFirstCustomerOrder(Request $request)
     {
-        return response()->json([
-            "payment_transaction" => $request['payment_transaction'],
-            "token_transaction" => '566a1d20-be7b-11ea-ab23-e1da5c328bb8',
-            "verification" => true,
-        ]);
-        /*$basePicture = $request->file('base_picture');
+        $basePicture = $request->file('document');
 
         $pathPicture = $basePicture->store('base_picture','local');
 
@@ -84,7 +79,7 @@ class CustomerOrderController extends Controller
 
         if ($customer == null) {
             return response()->json([
-                "payment_transaction" => $request['payment_transaction'],
+                "payment_transaction" => "132cb790-be5b-11ea-a053-1ffbee2d14d8",
                 "token_transaction" => "",
                 "verification" => false,
             ]);
@@ -102,7 +97,7 @@ class CustomerOrderController extends Controller
             $this->orderMailInterface->sendMailSeller($seller->toArray(),$customerOrder['token_transaction']);
 
             return response()->json([
-                "payment_transaction" => $customerOrder['uuid'],
+                "payment_transaction" => $customerOrder['payment_transaction'],
                 "token_transaction" => $customerOrder['token_transaction'],
                 "verification" => $verification,
             ]);
@@ -112,18 +107,13 @@ class CustomerOrderController extends Controller
             "payment_transaction" => $request['payment_transaction'],
             "token_transaction" => "",
             "verification" => $verification,
-        ],203);*/
+        ],203);
     }
 
     public function validateCustomerOrder(Request $request)
     {
         try {
-            return response()->json([
-                "payment_transaction" => $request['payment_transaction'],
-                "token_transaction" => '566a1d20-be7b-11ea-ab23-e1da5c328bb8',
-                "verification" => true,
-            ]);
-            /*$verification = $this->customerOrderInterface->verifiedCustomerOrders($request);
+            $verification = $this->customerOrderInterface->verifiedCustomerOrders($request);
 
             if ($verification) {
                 $customerOrder = $this->customerOrderInterface->validateCustomerOrders($request['payment_transaction']);
@@ -135,7 +125,7 @@ class CustomerOrderController extends Controller
                 $this->orderMailInterface->sendMailSeller($seller->toArray(),$customerOrder['token_transaction']);
 
                 return response()->json([
-                    "payment_transaction" => $customerOrder['uuid'],
+                    "payment_transaction" => $customerOrder['payment_transaction'],
                     "token_transaction" => $customerOrder['token_transaction'],
                     "verification" => $verification,
                 ]);
@@ -145,7 +135,7 @@ class CustomerOrderController extends Controller
                 "payment_transaction" => $request['payment_transaction'],
                 "token_transaction" => "",
                 "verification" => $verification,
-            ]);*/
+            ]);
         }catch (\Throwable $exception){
             Log::alert($exception);
             return response()->json([
