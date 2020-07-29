@@ -4,15 +4,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Mercado Tokens, a sua segurança começa aqui.</title>
-        <meta property="og:image" content="http://api.mercadotokens.com.br/images/logo.jpeg" />
+        <title>Laravel</title>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #f7f7f7;
+                background-color: #fff;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -49,6 +49,7 @@
             }
 
             .links > a {
+                color: #636b6f;
                 padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;
@@ -64,8 +65,30 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+
             <div class="content">
-                    <img src="/images/logo.jpeg" width="500px" />
+                <div class="title m-b-md">
+                    <img src="/images/cnh_fabio.png" width="150px" height="150px" /> <br>
+                    <img src="/images/foto_fabio.jpeg" width="150px" height="150px" />
+                </div>
+
+                @foreach($listFaceMatches as $face)
+                    Similarity: {{$face['Similarity']}} <br>
+                @endforeach
+
             </div>
         </div>
     </body>
